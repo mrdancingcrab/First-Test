@@ -10,7 +10,7 @@ namespace First_Test.Classes
     public class GameObject
     {
         public string Name { get; private set; }
-        public float HP { get; private set; }
+        public float HP { get; set; }
         public float MaxHP { get; private set; }
         public int AttackStrength { get; private set; }
         public float Defense { get; private set; }
@@ -27,6 +27,8 @@ namespace First_Test.Classes
             CriticalChance = criticalChance;
             EvadeChance = evadeChance;
         }
+
+
 
         public virtual float Attack()
         {
@@ -46,6 +48,8 @@ namespace First_Test.Classes
             }
             return baseDamage;
         }
+
+
 
         public virtual void TakeDamage(float amount)
         {

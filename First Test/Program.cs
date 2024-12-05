@@ -29,8 +29,6 @@ namespace First_Test
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"{enemy.Name} took too much korn and died...");
-                    player.Heal(10);
-                    enemy.Heal(10);
                     Console.ResetColor();
                     break;
                 }
