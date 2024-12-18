@@ -1,4 +1,5 @@
-﻿using System;
+﻿using First_Test.Classes.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -10,7 +11,7 @@ namespace First_Test.Classes.Player
     public class Player : GameObject
     {
         public Player(string name, float maxHP, int attackStrength, float defense, float criticalChance, float evadeChance)
-            : base(name, maxHP, attackStrength, defense, criticalChance, evadeChance)
+            : base(name, maxHP, attackStrength, defense, criticalChance, evadeChance, Element.Physical)
         {
 
         }
@@ -19,11 +20,15 @@ namespace First_Test.Classes.Player
             int randomAttack = new Random().Next(1, 4);
             float damage = 0;
             bool IsAlive = true;
-            Console.WriteLine("1. Children of the Korn");
-            Console.WriteLine("2. Korn on the Kob");
-            Console.WriteLine("3. Kornrows");
-            Console.WriteLine("4. Heal");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("1. Children of the Korn (15-20 Korn-dmg)");
+            Console.WriteLine("2. Korn on the Kob (5-10 Korn-dmg)");
+            Console.WriteLine("3. Kornrows (10-15 Korn-dmg)");
+            Console.ForegroundColor= ConsoleColor.Green;
+            Console.WriteLine("4. Heal (10 HP)");
             int.TryParse(Console.ReadLine(), out int choice);
+            Console.ResetColor();
+            Console.Clear();
 
             while (IsAlive)
             {
@@ -59,14 +64,16 @@ namespace First_Test.Classes.Player
                 if (random.NextDouble() < CriticalChance)
                 {
                     baseDamage = (int)(baseDamage * 1.5);
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine($"{Name} sends out his Kornlings who deals {baseDamage} CRITICAL korn dmg!!!");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"{Name} sends out his Kornlings who deals {baseDamage} CRITICAL korn-dmg!!!");
+                    Console.WriteLine();
                     Console.ResetColor();
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"{Name} sends out his Kornlings who deals  {baseDamage} korn dmg.");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine($"{Name} sends out his Kornlings who deals {baseDamage} korn-dmg.");
+                    Console.WriteLine();
                     Console.ResetColor();
                 }
                 return baseDamage;
@@ -81,14 +88,14 @@ namespace First_Test.Classes.Player
             if (random.NextDouble() < CriticalChance)
             {
                 baseDamage = (int)(baseDamage * 1.5);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"{Name} throws in a Korn on the Kob and deals {baseDamage} korn dmg!!!");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"{Name} throws in a Korn on the Kob and deals {baseDamage} CRITICAL korn-dmg!!!");
                 Console.ResetColor();
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"{Name} throws in a Korn on the Kob and deals {baseDamage} korn dmg.");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine($"{Name} throws in a Korn on the Kob and deals {baseDamage} korn-dmg.");
                 Console.ResetColor();
             }
             return baseDamage;
@@ -103,14 +110,14 @@ namespace First_Test.Classes.Player
                 if (random.NextDouble() < CriticalChance)
                 {
                     baseDamage = (int)(baseDamage * 1.5);
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"{Name} takes 10 rows of korn and deals {baseDamage} CRITICAL korn dmg!!!");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine($"{Name} takes 10 rows of korn and deals {baseDamage} CRITICAL korn-dmg!!!");
                     Console.ResetColor();
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"{Name} takes 10 rows of korn and deals {baseDamage} korn dmg.");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine($"{Name} takes 10 rows of korn and deals {baseDamage} korn-dmg.");
                     Console.ResetColor();
                 }
                 return baseDamage;

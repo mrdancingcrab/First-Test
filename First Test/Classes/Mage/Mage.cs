@@ -1,4 +1,5 @@
-﻿using System;
+﻿using First_Test.Classes.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ namespace First_Test.Classes.Mage
         public float MaxMana = 100;
 
         public Mage(string name, float maxHp, int attackStrength, float defense, float critChance, float evadeChance, int maxMana)
-            : base(name, maxHp, attackStrength, defense, critChance, evadeChance)
+            : base(name, maxHp, attackStrength, defense, critChance, evadeChance, Element.Lightning)
         {
             MaxMana = maxMana;
             Mana = MaxMana;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using First_Test.Classes.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -13,7 +14,7 @@ namespace First_Test.Classes.Elf
         public float MaxEcho = 100;
 
         public Elf(string name, float maxHP, int attackStrength, float defense, float criticalChance, float evasionChance, int maxEcho)
-            : base(name, maxHP, attackStrength, defense, criticalChance, evasionChance)
+            : base(name, maxHP, attackStrength, defense, criticalChance, evasionChance, Element.Forest)
         {
             MaxEcho = maxEcho;
             Echo = MaxEcho;
@@ -23,18 +24,16 @@ namespace First_Test.Classes.Elf
             int randomAttack = new Random().Next(1, 4);
             float damage = 0;
             bool IsAlive = true;
-
             Console.WriteLine("1. Resin of Rot");
             Console.WriteLine("2. VineWhip");
             Console.WriteLine("3. Stone Block");
             Console.WriteLine("4. Heal");
-            int.TryParse(Console.ReadLine(), out int choice);
 
             while (IsAlive)
             {
                 
 
-                switch(choice)
+                switch(randomAttack)
                 {
                     case 1:
                         damage = ResinOfRot();
@@ -53,6 +52,7 @@ namespace First_Test.Classes.Elf
                         IsAlive = false;
                         break;
                 }
+                Console.WriteLine();
             }
             return damage;
         }
@@ -157,14 +157,14 @@ namespace First_Test.Classes.Elf
                 {
                     baseDamage = (int)(baseDamage * 1.5);
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"{Name} smashes you with a big stone block and deals {baseDamage} CRITICAL forest dmg!!!");
+                    Console.WriteLine($"{Name} smashes you with a big stone block and deals {baseDamage} CRITICAL {AttackElement}-dmg!!!");
                     RegenerateEcho();
                     Console.ResetColor();
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"{Name} smashes you with a big stone block and deals {baseDamage} forest dmg.");
+                    Console.WriteLine($"{Name} smashes you with a big stone block and deals {baseDamage} {AttackElement}-forest dmg.");
                     RegenerateEcho();
                     Console.ResetColor();
                 }

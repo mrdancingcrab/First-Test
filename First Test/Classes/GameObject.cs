@@ -1,7 +1,9 @@
-﻿using System;
+﻿using First_Test.Classes.Enum;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,8 +18,9 @@ namespace First_Test.Classes
         public float Defense { get; private set; }
         public float CriticalChance { get; private set; }
         public float EvadeChance { get; private set; }
+        public Element AttackElement { get; private set; }
 
-        public GameObject(string name, float maxHP, int attackStrength, float defense, float criticalChance, float evadeChance)
+        public GameObject(string name, float maxHP, int attackStrength, float defense, float criticalChance, float evadeChance, Element attackElement)
         {
             Name = name;
             MaxHP = maxHP;
@@ -26,6 +29,7 @@ namespace First_Test.Classes
             Defense = defense;
             CriticalChance = criticalChance;
             EvadeChance = evadeChance;
+            AttackElement = attackElement;
         }
 
 
@@ -39,12 +43,12 @@ namespace First_Test.Classes
             {
                 baseDamage = (float)(baseDamage * 1.5);
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine($"{Name} deals a CRITICAL strike for {baseDamage} dmg!");
+                Console.WriteLine($"{Name} deals a CRITICAL strike for {baseDamage} {AttackElement}-dmg!");
                 Console.ResetColor();
             }
             else
             {
-                Console.WriteLine($"{Name} deals a strike for {baseDamage} dmg.");
+                Console.WriteLine($"{Name} deals a strike for {baseDamage} {AttackElement}-dmg.");
             }
             return baseDamage;
         }
@@ -105,11 +109,12 @@ namespace First_Test.Classes
         }
     }
 
-
-    public class Enemy : GameObject
+    public abstract class Enemy : GameObject
     {
-        public Enemy(string name, float maxHP, int attackStrength, float defense, float criticalChance, float evadeChance)
-            : base(name, maxHP, attackStrength, defense, criticalChance, evadeChance) { }
+        public Enemy(string name, float maxHP, int attackStrength, float defense, float criticalChance, float evadeChance, Element attackElement)
+            : base(name, maxHP, attackStrength, defense, criticalChance, evadeChance, attackElement)
+        { 
+        }
     }
 }
  

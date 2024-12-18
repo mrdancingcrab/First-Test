@@ -11,16 +11,18 @@ namespace First_Test
         static void Main(string[] args)
         {
             Player player = new Player("Kajkel", 100, 20, 5, 0.2f, 0.1f);
-            Enemy enemy = new Enemy("KornKorn", 100, 20, 5, 0.2f, 0.1f);
             Mage mage = new Mage("Magel", 120, 25, 2, 0.2f, 0.25f, 100);
-            Demon demon = new Demon("Demikorn", 100, 30, 10, 0.5f, 0.05f, 100);
+            Demon demon = new Demon("Demikorn", 120, 30, 0, 0.5f, 0.05f, 100);
             Elf elf = new Elf("Kornolas", 100, 30, 10, 0.2f, 0.3f, 100);
-            Battle(player, elf);
+            Battle(player, demon);
         }
         
         static void Battle(GameObject player, GameObject enemy)
         {
             Console.WriteLine($"{enemy.Name} comes out of the closet!\n");
+            Console.WriteLine("Press ENTER to engage!");
+            Console.ReadLine();
+            Console.Clear();
 
             while (player.IsAlive() && enemy.IsAlive())
             {

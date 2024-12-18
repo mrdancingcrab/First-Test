@@ -12,7 +12,7 @@ namespace First_Test.Classes.Demon
         public float MaxNether = 100;
 
         public Demon(string name, float maxHP, int attackStrength, float defense, float criticalChance, float evasionChance, int maxNether)
-            : base(name, maxHP, attackStrength, defense, criticalChance, evasionChance)
+            : base(name, maxHP, attackStrength, defense, criticalChance, evasionChance, Enum.Element.Fire)
         {
             MaxNether = maxNether;
             Nether = MaxNether;
@@ -21,7 +21,6 @@ namespace First_Test.Classes.Demon
         public override float Attack()
         {
             int spellCost = 25;
-
             if (Nether < spellCost)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -40,14 +39,14 @@ namespace First_Test.Classes.Demon
                 {
                     baseDamage = (int)(baseDamage * 1.5);
                     Console.ForegroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine($"{Name} casts a CRITICAL hit for {baseDamage} dmg!!!");
+                    Console.WriteLine($"{Name} casts a CRITICAL hit for {baseDamage} Fire-dmg!!!");
                     RegenerateNether();
                     Console.ResetColor();
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"{Name} casts a spell for {baseDamage} stygian dmg.");
+                    Console.WriteLine($"{Name} casts a spell for {baseDamage} Fire-dmg.");
                     RegenerateNether();
                     Console.ResetColor();
                 }
